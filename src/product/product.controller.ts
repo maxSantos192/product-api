@@ -17,9 +17,9 @@ import {
 } from '@nestjs/swagger';
 import { ProductService } from './product.service';
 import {
+  CreateProductDto,
   ProductDto,
-  type CreateProductDto,
-  type UpdateProductDto,
+  UpdateProductDto,
 } from './dto/product.dto';
 
 @ApiTags('products')
@@ -61,7 +61,7 @@ export class ProductController {
   @ApiResponse({
     status: 201,
     description: 'The product has been successfully created',
-    type: ProductDto,
+    type: CreateProductDto,
   })
   async create(@Body() createProductDto: CreateProductDto) {
     return this.productService.create(createProductDto);
@@ -73,7 +73,7 @@ export class ProductController {
   @ApiResponse({
     status: 200,
     description: 'The product has been successfully updated',
-    type: ProductDto,
+    type: UpdateProductDto,
   })
   @ApiResponse({ status: 404, description: 'Product not found' })
   async update(
